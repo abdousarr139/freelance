@@ -30,7 +30,9 @@ RUN mkdir -p storage/framework/{sessions,views,cache,testing} \
 EXPOSE 8000
 
 # Démarrer Laravel
-CMD php artisan optimize:clear && \
+CMD php artisan config:clear && \
+    php artisan view:clear && \
+    php artisan route:clear && \
     php artisan migrate --force && \
     php artisan storage:link && \
     php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
